@@ -1,0 +1,30 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "buefy": "^0.6.7",
+    "firebase": "^5.5.1",
+    "mdi": "^2.2.43",
+    "uuid": "^3.3.2",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1",
+    "vue2-datepicker": "^2.4.2",
+    "vuex": "^3.0.1",
+    "vuexfire": "^3.0.0-alpha.9"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^3.0.4",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "vue-template-compiler": "^2.5.17"
+  }
+}
