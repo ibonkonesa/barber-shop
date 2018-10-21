@@ -16,7 +16,8 @@ Clone this repository
 $ git clone https://github.com/ibonkonesa/barber-shop.git
 ```
 
-You have to create a new Firebase project. Cloud Firestore location must be set to us-central (default). If you choose other location, you must update src/store/user/location variable.
+You have to create a new Firebase project. Cloud Firestore location must be set to us-central (default). If you choose other location, you must update src/store/user/location variable. Go to database section and create a new cloud firestore database. 
+
 
 This repo have two legs: Cloud functions (act as a backend server, providing authentication and triggering when books are written) and a Vue.JS SPA that allow users to make and check reservations.
 
@@ -39,27 +40,28 @@ You have to create a new service account from Firebase console. Go to Settings> 
 
 After setting up cloud functions, you have to configure the front end App. Vue.JS project is located on src folder. There is a file called config/firebase.js.example. Please rename this file to firebase.js and update the config variable with data provided adding a new web application in Firebase project's console. Just update config variable. 
 
+You must update cloud-functions/functions/index.js databaseUrl with previous databaseUrl config value. 
+
 Now you can deploy this project.
 
-
 ## Deploy app
-
 
 After setting up the project, you can deploy the project. 
 
 ### App
 
-This is a vue-cli based project. Launch build command:
+This is a vue-cli based project. Install npm packages:
+
+```sh
+$ npm install
+```
+
+Launch build command:
 
 ```sh
 $ npm run build --prod
 ```
 
-The frontend app will be built at /dist folder. Please check if there is a symbolic link in cloud-functions/public pointing to /dist folder. If this link does not exist, execute:
-
-```sh
-$ ln -s dist cloud-functions/public
-```
 
 
 ### Cloud functions and hosting
@@ -74,6 +76,19 @@ Enter to cloud-function folder:
 
 ```sh
 $ cd cloud-functions
+```
+
+
+Cloud functions is NodeJs. Install npm packages:
+
+```sh
+$ npm install
+```
+
+The frontend app will be built at /dist folder. Please check if there is a symbolic link in cloud-functions/public pointing to /dist folder. If this link does not exist, execute:
+
+```sh
+$ ln -s ../dist public
 ```
 
 

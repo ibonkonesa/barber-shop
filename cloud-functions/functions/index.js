@@ -2,10 +2,11 @@ const functions = require('firebase-functions');
 const cors = require('cors');
 const admin = require('firebase-admin');
 const serviceAccount = require('./serviceAccountKey.json');
-const config = require('../../src/config/firebase');
+const databaseUrl = "XXXXX";
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: config.databaseURL
+    databaseURL: databaseUrl
 });
 exports.createBooking = functions.firestore
     .document('details/{detail}')
