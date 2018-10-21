@@ -6,7 +6,7 @@ User can make a reservation getting a code. This code could be used to cancel th
 
 You can deploy a reservation system without a server, but keep in mind this is just a playground.
 
-Comments and contributions will be appreciated. I'm doing this just for fun.
+Comments and contributions will be appreciated. I'm doing it just for fun.
 
 ## Project setup
 
@@ -16,10 +16,10 @@ Clone this repository
 $ git clone https://github.com/ibonkonesa/barber-shop.git
 ```
 
-You have to create a new Firebase project. Cloud Firestore location must be set to us-central (default). If you choose other location, you must update src/store/user/location variable. Go to database section and create a new cloud firestore database. 
+You must create a new Firebase project. Cloud Firestore location must be set to us-central (default). If you choose other location, you must update src/store/user/location variable. Go to database section and create a new cloud firestore database. 
 
 
-This repo have two legs: Cloud functions (act as a backend server, providing authentication and triggering when books are written) and a Vue.JS SPA that allow users to make and check reservations.
+This repo have two legs: Cloud functions (act as a backend server, providing authentication and triggering when bookings are written) and a Vue.JS SPA that allow users to make and check reservations.
 
 Cloud functions code is located at cloud-functions folder. In the root of this folder there is a file you have to edit. 
 
@@ -36,7 +36,7 @@ Functions folder contains two important files:
   * createToken. This is a http function. It returns a token used by the webapp in order to modify a reservation
   
 -serviceAccountKey.json: If you clone this repo this file shouldn't exists. It's the server side (remember, cloud function act as a server) configuration file. 
-You have to create a new service account from Firebase console. Go to Settings> Service account and generate new private account. Put the generated file in cloud-functions/functions/serviceAccountKey.json
+You have to create a new service account from Firebase console. Go to Settings> Service account and generate a new private account. Put the generated file in cloud-functions/functions/serviceAccountKey.json
 
 After setting up cloud functions, you have to configure the front end App. Vue.JS project is located on src folder. There is a file called config/firebase.js.example. Please rename this file to firebase.js and update the config variable with data provided adding a new web application in Firebase project's console. Just update config variable. 
 
@@ -79,10 +79,12 @@ $ cd cloud-functions
 ```
 
 
-Cloud functions is NodeJs. Install npm packages:
+Enter functions folder and install npm packages:
 
 ```sh
+$ cd functions
 $ npm install
+$ cd ..
 ```
 
 The frontend app will be built at /dist folder. Please check if there is a symbolic link in cloud-functions/public pointing to /dist folder. If this link does not exist, execute:
