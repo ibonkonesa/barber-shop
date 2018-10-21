@@ -11,7 +11,7 @@ export default new Router({
             component: Home
         },
         {
-            path: '/comprobar-cita',
+            path: '/check-booking',
             name: 'check-booking',
             component: Booking
         },

@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Calendar</router-link> |
-      <router-link to="/comprobar-cita">Check reservation</router-link>
+      <router-link to="/check-booking">Check reservation</router-link>
     </div>
     <router-view/>
   </div>
