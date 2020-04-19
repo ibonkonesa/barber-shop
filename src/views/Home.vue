@@ -26,19 +26,24 @@
                             <b-input required type="text" placeholder="Phone"
                                      v-model="newBooking.phone"></b-input>
                         </b-field>
-                        <button @click="doBooking" :disabled="!isFormValid()" class="button is-primary" v-bind:class="{'is-loading': isBooking}" >Make reservation
+                        <button @click="doBooking" :disabled="!isFormValid()" class="button is-primary"
+                                v-bind:class="{'is-loading': isBooking}">Make reservation
                         </button>
                     </div>
                 </div>
             </b-modal>
-            <h1 class="title">Calendar {{date.toLocaleDateString()}}</h1>
-            <div class="columns is-multiline" style="margin: 2em">
+            <h1 class="title">{{date.toLocaleDateString()}} schedule</h1>
+            <div v-if="isOpenOnDate" class="columns is-multiline" style="margin: 2em">
                 <div v-for="fixture in calendar" class="column is-2">
                     <div class="fixture" @click="showModal(fixture)"
                          v-bind:class="{ 'booked': fixture.isBooked, 'free': !fixture.isBooked}">
                         {{fixture.hour}}:{{ ('0'+fixture.minutes).slice(-2)}}
                     </div>
                 </div>
+            </div>
+            <div v-else>
+                <br><br>
+                <h1 class="subtitle has-text-danger">We are closed this day. Please pick another one in the calendar</h1>
             </div>
         </div>
     </div>
@@ -47,6 +52,8 @@
 
     import {mapState, mapActions} from 'vuex';
     import DatePicker from 'vue2-datepicker'
+    import schedule from "../config/schedule";
+
     export default {
         name: 'home',
         components: {
@@ -64,38 +71,18 @@
                 isBooking: false,
                 showBookingModal: false,
                 date: date,
-                schedule: [
-                    {hour: 9, minutes: 0},
-                    {hour: 9, minutes: 30},
-                    {hour: 10, minutes: 0},
-                    {hour: 10, minutes: 30},
-                    {hour: 11, minutes: 0},
-                    {hour: 11, minutes: 30},
-                    {hour: 12, minutes: 0},
-                    {hour: 12, minutes: 30},
-                    {hour: 13, minutes: 0},
-                    {hour: 13, minutes: 30},
-                    {hour: 16, minutes: 30},
-                    {hour: 17, minutes: 0},
-                    {hour: 17, minutes: 30},
-                    {hour: 18, minutes: 0},
-                    {hour: 18, minutes: 30},
-                    {hour: 19, minutes: 0},
-                    {hour: 19, minutes: 30},
-                    {hour: 20, minutes: 0},
-                    {hour: 20, minutes: 30},
-                ],
+                schedule: schedule.hours,
                 generatedCode: null,
                 showGeneratedCode: false
             }
         },
         methods: {
-            ...mapActions('bookings', ['create']),
+            ...mapActions('bookings', ['create', 'getReservations']),
             doBooking: function () {
                 this.isBooking = true;
                 //CREATE BOOKING
                 let date = new Date(this.date.toDateString() + ' 12:00:00');
-                date.setUTCHours(this.newBooking.fixture.hour, this.newBooking.fixture.minutes, 0);
+                date.setHours(this.newBooking.fixture.hour, this.newBooking.fixture.minutes, 0);
                 let payload = {
                     name: this.newBooking.name,
                     phone: this.newBooking.phone,
@@ -105,6 +92,8 @@
                     this.generatedCode = code;
                     this.showBookingModal = false;
                     this.isBooking = false;
+                    this.showGeneratedCode = true;
+
                 });
             },
             showModal: function (fixture) {
@@ -115,7 +104,6 @@
                     fixture: fixture
                 };
                 this.showBookingModal = true;
-                this.showGeneratedCode = true;
             },
 
             isFormValid: function () {
@@ -130,22 +118,32 @@
         },
         computed: {
             ...mapState('bookings', ['reservations']),
+            isOpenOnDate() {
+                return schedule.openingDays.includes(this.date.getDay());
+            },
             calendar: function () {
                 let calendar = [];
                 this.schedule.forEach(hour => {
                     let date = new Date(this.date.toDateString() + ' 12:00:00');
-                    date.setUTCHours(hour.hour, hour.minutes, 0);
-                    let reservation = this.reservations.filter(x => {
-                        return x.date.seconds === (date.getTime() / 1000)
-                    });
-                    calendar.push({
-                        hour: hour.hour,
-                        minutes: hour.minutes,
-                        isBooked: reservation.length === 1
-                    });
+                    date.setHours(hour.hour, hour.minutes, 0);
+
+                    if (date >= new Date()) {
+                        let reservation = this.reservations.filter(x => {
+                            return x.date.seconds === (date.getTime() / 1000)
+                        });
+                        calendar.push({
+                            hour: hour.hour,
+                            minutes: hour.minutes,
+                            isBooked: reservation.length === 1
+                        });
+                    }
+
                 });
                 return calendar;
             }
+        },
+        created() {
+            this.getReservations();
         }
     }
 </script>
@@ -153,13 +151,17 @@
 
 <style>
     .fixture {
-        padding: 2em
+        padding: 2em;
+        border-radius: 5px;
+        font-weight: bolder;
     }
     .booked {
-        background-color: red;
+        background-color: #ffa8a8;
+        cursor: not-allowed;
+
     }
     .free {
         cursor: pointer;
-        background-color: green;
+        background-color: #b0ecb0;
     }
 </style>

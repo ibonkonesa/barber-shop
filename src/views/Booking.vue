@@ -13,33 +13,36 @@
             <h2 class="subtitle" style="color: red" v-if="nonExistingCode">Unknown code</h2>
         </div>
     </div>
-     <div v-else>
-        <br>
-        <h2 class="title">
-            <small>Reservation:</small>
-            {{booking.code}}
-        </h2>
-        <br>
-        <h2 class="subtitle">
-            <small>Name:</small>
-            {{booking.name}}
-        </h2>
-        <h2 class="subtitle">
-            <small>Phone:</small>
-            {{booking.phone}}
-        </h2>
-        <h2 class="subtitle">
-            <small>Date and time:</small>
-            {{ new Date(booking.date.seconds * 1000).toLocaleDateString()}} {{ new Date(booking.date.seconds *
-            1000).toLocaleTimeString()}}
-        </h2>
-        <br>
-        <button @click="cancelBooking" class="button is-primary" v-bind:class="{'is-loading': isCancelling}">Cancel reservation
-        </button>
+    <div v-else>
+        <div style="border: 1px solid gainsboro; padding: 2em; width: 50%; margin: 0 auto; border-radius: 15px">
+            <h2 class="title">
+                <small>Reservation code:</small>
+                {{booking.code}}
+            </h2>
+            <br>
+            <h2 class="subtitle">
+                <small>Name:</small>
+                {{booking.name}}
+            </h2>
+            <h2 class="subtitle">
+                <small>Phone:</small>
+                {{booking.phone}}
+            </h2>
+            <h2 class="subtitle">
+                <small>Date and time:</small>
+                {{ new Date(booking.date.seconds * 1000).toLocaleDateString()}} {{ new Date(booking.date.seconds *
+                1000).toLocaleTimeString()}}
+            </h2>
+            <br>
+            <button @click="cancelBooking" class="button is-primary" v-bind:class="{'is-loading': isCancelling}">Cancel
+                reservation
+            </button>
+        </div>
     </div>
 </template>
 <script>
     import {mapActions, mapState} from 'vuex';
+
     export default {
         name: "booking",
         data() {
@@ -58,7 +61,7 @@
         },
         methods: {
             ...mapActions('bookings', ['cancel']),
-            ...mapActions('user', ['getToken']),
+            ...mapActions('user', ['getToken', 'logout']),
             cancelBooking: function () {
                 this.isCancelling = true;
                 this.cancel(this.booking).then(() => {
@@ -75,6 +78,15 @@
                     this.isChecking = false;
                 })
             }
+        },
+        beforeDestroy() {
+            this.logout();
         }
     }
 </script>
+<style lang="scss" scoped>
+
+    .subtitle {
+        font-weight: bolder;
+    }
+</style>

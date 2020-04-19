@@ -13,5 +13,8 @@
     "firebase-functions": "^1.0.3",
     "cors": "^2.8.4"
   },
-  "private": true
+  "private": true,
+  "engines": {
+    "node": "10"
+  }
 }

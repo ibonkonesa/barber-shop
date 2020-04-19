@@ -13,7 +13,7 @@
     "babel-polyfill": "^6.26.0",
     "buefy": "^0.6.7",
     "firebase": "^5.5.1",
-    "mdi": "^2.2.43",
+    "@mdi/font": "^2.8.94",
     "uuid": "^3.3.2",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@vue/cli-service": "^3.0.4",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.13.1",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"
   }

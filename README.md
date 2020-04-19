@@ -40,7 +40,7 @@ You have to create a new service account from Firebase console. Go to Settings> 
 
 After setting up cloud functions, you have to configure the front end App. Vue.JS project is located on src folder. There is a file called config/firebase.js.example. Please rename this file to firebase.js and update the config variable with data provided adding a new web application in Firebase project's console. Just update config variable. 
 
-You must update cloud-functions/functions/index.js databaseUrl with previous databaseUrl config value. 
+Schedule and app config (title, description) are defined in config folder. Constant names are self-descriptive ;)
 
 Now you can deploy this project.
 
@@ -108,10 +108,11 @@ $ firebase deploy
 
 A url will be printed in the terminal and reservation system will be accessible. You can link a custom domain in the Firebase console.
 
-## TO DO
+## ToDo
 
-- Beautiful style
 - Mobile app (Quasar? Ionic?)
+- Sending emails to store owner
+- Refactor stores with async/await
 
    
 ## CONTRIBUTION

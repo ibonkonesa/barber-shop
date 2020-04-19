@@ -25,7 +25,8 @@ $link-focus-border: $primary;
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
-@import '~mdi/css/materialdesignicons.css';
+@import '~@mdi/font/css/materialdesignicons.css';
+
 .is-vertical-center {
   display: flex;
   align-items: center;

@@ -7,9 +7,6 @@ import config from './config/firebase';
 import bookings from "./store/bookings";
 import user from "./store/user";
 firebase.initializeApp(config);
-const firestore = firebase.firestore();
-const settings = {timestampsInSnapshots: true};
-firestore.settings(settings);
 Vue.use(Vuex);
 const state = {
     db: firebase.firestore()

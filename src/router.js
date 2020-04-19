@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Booking from './views/Booking.vue'
 Vue.use(Router)
 export default new Router({
+    mode: 'history',
     routes: [
         {
             path: '/',
