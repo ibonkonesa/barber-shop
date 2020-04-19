@@ -1,5 +1,7 @@
 # Barber Shop
 
+Demo is available [here](https://barber-shop-53333.web.app/)
+
 Reservations system made with Vue + Firebase ecosystem (cloud functions, auth, firestore, hosting). This example is inspired in a barber shop requirements, but is applicable in a lot of scenarios. 
 
 User can make a reservation getting a code. This code could be used to cancel the reservation.
