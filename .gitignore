@@ -26,3 +26,4 @@ cloud-functions/functions/serviceAccountKey.json
 cloud-functions/functions/package-lock.json
 src/config/firebase.js
 package-lock.json
+cloud-functions/functions/mailing.js

@@ -46,6 +46,43 @@ Schedule and app config (title, description) are defined in config folder. Const
 
 Now you can deploy this project.
 
+## Mailing
+
+You can set up automatic email sending when a client makes a reservation. Just rename /cloud-functions/functions/mailing.example 
+to /cloud-functions/functions/mailing.js and put 
+gmail sender credentials, and the receiver email.
+Remember to activate Gmail less secure apps (https://myaccount.google.com/lesssecureapps), 
+and you probably will need to activate access account after 
+every cloud functions deploy visiting https://accounts.google.com/DisplayUnlockCaptcha
+
+## Development
+
+### With Docker
+
+Just apply the included docker-compose file and go to http://localhost:8080
+
+```sh
+$ docker-compose up
+```
+
+### Locally
+
+Npm:
+
+```sh
+$ npm install
+$ npm run serve
+```
+
+Yarn:
+
+```sh
+$ yarn install
+$ yarn serve
+```
+
+Hot-reload server will be available at  http://localhost:8080
+
 ## Deploy app
 
 After setting up the project, you can deploy the project. 
@@ -113,7 +150,6 @@ A url will be printed in the terminal and reservation system will be accessible.
 ## ToDo
 
 - Mobile app (Quasar? Ionic?)
-- Sending emails to store owner
 - Refactor stores with async/await
 
    

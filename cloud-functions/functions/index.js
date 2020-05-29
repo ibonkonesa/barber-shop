@@ -2,23 +2,46 @@ const functions = require('firebase-functions');
 const cors = require('cors');
 const admin = require('firebase-admin');
 const serviceAccount = require('./serviceAccountKey.json');
+const nodemailer = require('nodemailer');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
+
+let mailing;
+let transporter;
+try {
+    mailing = require('./mailing.js');
+    transporter = nodemailer.createTransport({
+        service: 'gmail',
+        port: 465,
+        secure: true,
+        auth: {
+            user: mailing.sender.email,
+            pass: mailing.sender.password
+        }
+    });
+} catch (e) {
+    mailing = null;
+}
+
 exports.createBooking = functions.firestore
     .document('details/{detail}')
     .onCreate((snap) => {
         const data = snap.data();
-        const id = snap.id;
-        return admin.firestore().collection('bookings').doc(id).set({date: data.date});
+        if (mailing) {
+            const mailOptions = {
+                from: mailing.sender.email,
+                to: mailing.receiver,
+                subject: 'New reservation',
+                html: '<p style="font-size: 16px;">' + data.name + ' has made a reservation:</p>' +
+                    'Date: ' + data.date + '<br> ' +
+                    'Phone: ' + data.phone + '<br> '
+            };
+            transporter.sendMail(mailOptions);
+        }
     });
-exports.deleteBooking = functions.firestore
-    .document('details/{detail}')
-    .onDelete((snap) => {
-        const id = snap.id;
-        return admin.firestore().collection('bookings').doc(id).delete();
-    });
+
 exports.createToken = functions.https.onRequest((req, res) => {
     const corsFn = cors();
     corsFn(req, res, function () {
