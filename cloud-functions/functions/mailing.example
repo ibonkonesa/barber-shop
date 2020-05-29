@@ -1,0 +1,7 @@
+module.exports = {
+    sender: {
+        email: "foo@gmail.com",
+        password: "helloMyFriend684"
+    },
+    receiver: "foo@gmail.com",
+}
