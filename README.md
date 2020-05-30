@@ -1,6 +1,10 @@
 # Barber Shop
 
-Demo is available [here](https://barber-shop-53333.web.app/) Admin credentials: username:demo@demo.com, password: demo2020
+Demo is available [here](https://barber-shop-53333.web.app/) 
+
+Admin credentials: 
+- username:demo@demo.com 
+- password: demo2020
 
 Reservations system made with Vue + Firebase ecosystem (cloud functions, auth, firestore, hosting). This example is inspired in a barber shop requirements, but is applicable in a lot of scenarios. 
 
