@@ -43,7 +43,7 @@ After setting up cloud functions, you have to configure the front end App. Vue.J
 
 Schedule and app config (title, description) are defined in config folder. Constant names are self-descriptive ;)
 
-Admin users must be created in Firebase Console, and they have to by created using Email/Password signing method. All users created with this method will be able to this area.
+Admin users must be created in Firebase Console, and they have to be created using Email/Password signing method. All users created with this method will be able to this area.
 
 Now you can deploy this project.
 
