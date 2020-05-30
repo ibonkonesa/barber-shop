@@ -47,10 +47,11 @@ Now you can deploy this project.
 
 ## Mailing
 
-You can set up automatic email sending when a client makes a reservation. Just rename /cloud-functions/functions/mailing.example 
-to /cloud-functions/functions/mailing.js and put 
-gmail sender credentials, and the receiver email.
-Remember to activate Gmail less secure apps (https://myaccount.google.com/lesssecureapps), 
+You can set up automatic email sending when a client makes a reservation. 
+
+Just rename /cloud-functions/functions/mailing.example
+to /cloud-functions/functions/mailing.js and put gmail sender credentials, and the receiver email.
+Remember to activate "Gmail less secure apps" (https://myaccount.google.com/lesssecureapps), 
 and you probably will need to activate access account after 
 every cloud functions deploy visiting https://accounts.google.com/DisplayUnlockCaptcha
 
