@@ -5,11 +5,15 @@ export default {
     namespaced: true,
     state: {
         reservations: [],
+        nextReservations: [],
     },
     getters: {},
     mutations: {
         setReservations: function (state, data) {
             state.reservations = data;
+        },
+        setNextReservations: function (state, data) {
+            state.nextReservations = data;
         }
     },
     actions: {
@@ -21,6 +25,24 @@ export default {
                         reservations.push(doc.data());
                     });
                     commit('setReservations', reservations);
+                    resolve();
+                })
+            });
+        },
+        getNextReservations({rootState, commit}) {
+            return new Promise(resolve => {
+                rootState.db.collection("details").where('date', '>', new Date()).onSnapshot(function (querySnapshot) {
+                    let reservations = [];
+                    querySnapshot.forEach(function (doc) {
+                        let detail = doc.data();
+                        reservations.push({
+                            name: detail.name,
+                            phone: detail.phone,
+                            date: new Date(detail.date.seconds * 1000).toLocaleString(),
+                            code: detail.code
+                        });
+                    });
+                    commit('setNextReservations', reservations);
                     resolve();
                 })
             });
@@ -43,7 +65,9 @@ export default {
                 let detailRef = await firebase.firestore().collection('details').where('code', '==', booking.code).get();
                 let id = detailRef.docs[0].id;
                 await firebase.firestore().collection('details').doc(id).delete()
-                await dispatch('user/logout', {}, {root: true})
+                if (!firebase.auth().currentUser.email) {
+                    await dispatch('user/logout', {}, {root: true})
+                }
                 resolve();
             })
         }

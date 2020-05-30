@@ -43,6 +43,8 @@ After setting up cloud functions, you have to configure the front end App. Vue.J
 
 Schedule and app config (title, description) are defined in config folder. Constant names are self-descriptive ;)
 
+Admin users must be created in Firebase Console, and they have to by created using Email/Password signing method. All users created with this method will be able to this area.
+
 Now you can deploy this project.
 
 ## Mailing
@@ -54,6 +56,7 @@ to /cloud-functions/functions/mailing.js and put gmail sender credentials, and t
 Remember to activate "Gmail less secure apps" (https://myaccount.google.com/lesssecureapps), 
 and you probably will need to activate access account after 
 every cloud functions deploy visiting https://accounts.google.com/DisplayUnlockCaptcha
+
 
 ## Development
 
