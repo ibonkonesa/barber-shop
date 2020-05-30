@@ -57,10 +57,8 @@ You can set up automatic email sending when a client makes a reservation.
 
 Just rename /cloud-functions/functions/mailing.example
 to /cloud-functions/functions/mailing.js and put gmail sender credentials, and the receiver email.
-Remember to activate "Gmail less secure apps" (https://myaccount.google.com/lesssecureapps), 
-and you probably will need to activate access account after 
-every cloud functions deploy visiting https://accounts.google.com/DisplayUnlockCaptcha
-
+Remember to activate "Gmail less secure apps" (https://myaccount.google.com/lesssecureapps). 
+If you are using 2FA in your sender email, you would have to create an Application Specific password in order to get mailer working. This [link](https://community.nodemailer.com/using-gmail/) could be useful. 
 
 ## Development
 
