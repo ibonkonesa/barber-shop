@@ -33,8 +33,7 @@ Functions folder contains two important files:
 
 -index: here is where server code is. You are free to update / get better this code. Basically, there are 3 functions:
 
-  * createBooking. Is a trigger launched when a reservation is created in the database
-  * deleteBooking. Launched when a reservation is deleted. It's executed automatically.
+  * createBooking. Is a trigger launched when a reservation is created in the database. This function will notify if you configure mailing.
   * createToken. This is a http function. It returns a token used by the webapp in order to modify a reservation
   
 -serviceAccountKey.json: If you clone this repo this file shouldn't exists. It's the server side (remember, cloud function act as a server) configuration file. 
