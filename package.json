@@ -11,7 +11,7 @@
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
-    "buefy": "^0.6.7",
+    "buefy": "^0.9.2",
     "firebase": "^5.5.1",
     "@mdi/font": "^2.8.94",
     "uuid": "^3.3.2",
