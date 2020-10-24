@@ -82,8 +82,9 @@
             ...mapActions('user', ['adminLogin', 'checkAdminAuth', 'logout']),
             ...mapActions('bookings', ['cancel', 'getNextReservations']),
 
-            cancelReservation(booking) {
-                this.cancel(booking);
+            async cancelReservation(booking) {
+                await this.cancel(booking);
+                this.getNextReservations();
             },
             logIn() {
                 this.isLogin = true;
@@ -104,7 +105,6 @@
     }
 </script>
 <style lang="scss" scoped>
-
     .subtitle {
         font-weight: bolder;
     }
