@@ -1,6 +1,10 @@
 # Barber Shop
 
-Demo is available [here](https://barber-shop-53333.web.app/)
+Demo is available [here](https://barber-shop-53333.web.app/) 
+
+Admin credentials: 
+- username:demo@demo.com 
+- password: demo2020
 
 Reservations system made with Vue + Firebase ecosystem (cloud functions, auth, firestore, hosting). This example is inspired in a barber shop requirements, but is applicable in a lot of scenarios. 
 
@@ -33,8 +37,7 @@ Functions folder contains two important files:
 
 -index: here is where server code is. You are free to update / get better this code. Basically, there are 3 functions:
 
-  * createBooking. Is a trigger launched when a reservation is created in the database
-  * deleteBooking. Launched when a reservation is deleted. It's executed automatically.
+  * createBooking. Is a trigger launched when a reservation is created in the database. This function will notify if you configure mailing.
   * createToken. This is a http function. It returns a token used by the webapp in order to modify a reservation
   
 -serviceAccountKey.json: If you clone this repo this file shouldn't exists. It's the server side (remember, cloud function act as a server) configuration file. 
@@ -44,16 +47,18 @@ After setting up cloud functions, you have to configure the front end App. Vue.J
 
 Schedule and app config (title, description) are defined in config folder. Constant names are self-descriptive ;)
 
+Admin users must be created in Firebase Console, and they have to be created using Email/Password signing method. All users created with this method will be able to this area.
+
 Now you can deploy this project.
 
 ## Mailing
 
-You can set up automatic email sending when a client makes a reservation. Just rename /cloud-functions/functions/mailing.example 
-to /cloud-functions/functions/mailing.js and put 
-gmail sender credentials, and the receiver email.
-Remember to activate Gmail less secure apps (https://myaccount.google.com/lesssecureapps), 
-and you probably will need to activate access account after 
-every cloud functions deploy visiting https://accounts.google.com/DisplayUnlockCaptcha
+You can set up automatic email sending when a client makes a reservation. 
+
+Just rename /cloud-functions/functions/mailing.example
+to /cloud-functions/functions/mailing.js and put gmail sender credentials, and the receiver email.
+Remember to activate "Gmail less secure apps" (https://myaccount.google.com/lesssecureapps). 
+If you are using 2FA in your sender email, you would have to create an Application Specific password in order to get mailer working. This [link](https://community.nodemailer.com/using-gmail/) could be useful. 
 
 ## Development
 

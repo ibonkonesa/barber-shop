@@ -80,7 +80,9 @@
             }
         },
         beforeDestroy() {
-            this.logout();
+            if (this.isUserAuth) {
+                this.logout();
+            }
         }
     }
 </script>

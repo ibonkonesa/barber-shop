@@ -7,6 +7,8 @@
             <router-link to="/">Calendar</router-link>
             |
             <router-link to="/check-booking">Check reservation</router-link>
+            |
+            <router-link to="/admin">Admin</router-link>
         </div>
         <router-view/>
     </div>

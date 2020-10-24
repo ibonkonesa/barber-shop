@@ -2,10 +2,10 @@ service cloud.firestore {
   match /databases/{database}/documents {        
 	 match /bookings/{booking} {
       allow read, create: if true;
-      allow delete: if request.auth.uid == resource.data.code;
+      allow delete: if request.auth.uid == resource.data.code || request.auth.token.email != null;
     }
     match /details/{detail} {
-       allow read, delete: if request.auth.uid == resource.data.code;
+       allow read, delete: if request.auth.uid == resource.data.code || request.auth.token.email != null;
        allow create: if  true;
     }        
   }

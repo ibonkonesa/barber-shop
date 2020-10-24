@@ -43,7 +43,8 @@
             </div>
             <div v-else>
                 <br><br>
-                <h1 class="subtitle has-text-danger">We are closed this day. Please pick another one in the calendar</h1>
+                <h1 class="subtitle has-text-danger">We are closed this day. Please pick another one in the
+                    calendar</h1>
             </div>
         </div>
     </div>
@@ -93,6 +94,7 @@
                     this.showBookingModal = false;
                     this.isBooking = false;
                     this.showGeneratedCode = true;
+                    this.getReservations();
 
                 });
             },
@@ -155,11 +157,13 @@
         border-radius: 5px;
         font-weight: bolder;
     }
+
     .booked {
         background-color: #ffa8a8;
         cursor: not-allowed;
 
     }
+
     .free {
         cursor: pointer;
         background-color: #b0ecb0;
